@@ -6,7 +6,7 @@ const nextConfig = {
   },
   // 3. 如果你的 GitHub Repo 名稱不是你的帳號名 (username.github.io)，
   // 而是像 "my-slot-machine"，請取消下面這行的註解並填入 repo 名稱：
-  basePath: '/let-s-go',
+  basePath: '/Let-s-GO',
 };
 
 export default nextConfig;
