@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev-static": "next build && npx serve@latest out",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
