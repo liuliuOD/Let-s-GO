@@ -1,29 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 今天要做點什麼 (Let's GO!)
 
-## Getting Started
+這是一個基於 **Next.js 16** 開發的互動式「來找點事做吧」拍拍機。旨在解決「今天不知道要去哪裡」或「不知道要做什麼」的日常難題，透過趣味的互動方式生成冒險指令。
 
-First, run the development server:
-```bash
-npm run dev-static
-```
+[👉 立即體驗 Demo](https://liuliuod.github.io/Let-s-GO/)
+![demo page snapshot](./images/demo.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ 特色功能
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **3D 互動感按鈕**：擬真的 PUSH 大按鈕，具備物理位移視覺回饋。
+- **手動控制停止**：自由決定何時停止轉盤，命運掌握在自己手中。
+- **動態內容管理**：任務、方向與站數完全資料化，易於擴充。
+- **一鍵保存任務**：支援將生成的任務指令書直接下載為 PNG 圖片。
+- **自動化部署**：整合 GitHub Actions，推送程式碼後自動發布至 GitHub Pages。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ 技術棧
 
-## Learn More
+- **框架**: [Next.js](https://nextjs.org/) (App Router)
+- **樣式**: [Tailwind CSS](https://tailwindcss.com/)
+- **動畫與特效**: [canvas-confetti](https://www.npmjs.com/package/canvas-confetti)
+- **圖片生成**: [html-to-image](https://www.npmjs.com/package/html-to-image)
+- **語言**: [TypeScript](https://www.typescriptlang.org/)
 
-To learn more about Next.js, take a look at the following resources:
+## 📂 專案結構與自定義
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+專案採用「資料與邏輯分離」的設計，你可以輕鬆修改任務內容：
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `app/constants.ts`: **核心設定檔**。在此修改 `SLOT_CONFIG` 即可增加或減少轉盤格數與內容，修改 `UI_TEXT` 則可調整介面文字。
+- `app/page.tsx`: 主要邏輯與 UI 渲染。
 
-## Deploy on Vercel
+## 🚀 本地開發
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **複製專案**:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   git clone https://github.com/liuliuod/Let-s-GO.git
+   ```
+
+2. **安裝依賴**:
+
+    ```bash
+    npm install
+    ```
+
+3. **啟動開發伺服器**:
+
+    ```bash
+    npm run dev-static
+    ```
+
+4. **開啟瀏覽器**: [訪問](http://localhost:3000/Let-s-GO)
