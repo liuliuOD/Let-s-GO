@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { toPng } from 'html-to-image';
 import confetti from 'canvas-confetti';
 import { SLOT_CONFIG, UI_TEXT } from './constants';
+import Giscus from './giscus';
 
 export default function SlotMachine() {
   const [reels, setReels] = useState<string[]>(SLOT_CONFIG.map(c => c.label));
@@ -89,6 +90,8 @@ export default function SlotMachine() {
           {UI_TEXT.SAVE_BUTTON}
         </button>
       </div>
+
+      <Giscus />
     </div>
   );
 }
