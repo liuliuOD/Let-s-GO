@@ -82,7 +82,7 @@ export default function SlotMachine() {
                 </div>
               </div>
             ) : (
-              /* 沒有照片：僅在任務鎖定後，顯示一個細小的上傳入口，不佔據大空間 */
+              /* 沒有照片：僅在任務鎖定後，顯示一個細小的新增入口，不佔據大空間 */
               message === UI_TEXT.PHOTO_DONE && (
                 <div
                   onClick={() => fileInputRef.current?.click()}

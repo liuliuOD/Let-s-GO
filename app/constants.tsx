@@ -16,9 +16,9 @@ export const UI_TEXT = {
     HINT: "點擊下方按鈕開始！",
     ROLLING: "🎲 命運安排中...",
     GO: "✨ 任務鎖定！出發吧！ ✨",
-    PHOTO_UPLOAD: "點擊上傳任務達成照", // 新增
+    PHOTO_UPLOAD: "點擊新增任務達成照（注意：照片僅存在你使用的裝置中，本網站不會上傳或紀錄）", // 新增
     PHOTO_CHANGE: "點擊更換照片", // 新增：已有照片時的提示
-    PHOTO_DONE: "✨ 任務鎖定！上傳照片證明吧！ ✨", // 新增（可覆蓋原本的 GO）
+    PHOTO_DONE: "✨ 任務鎖定！新增照片證明吧！ ✨（注意：照片僅存在你使用的裝置中，本網站不會上傳或紀錄）", // 新增（可覆蓋原本的 GO）
 };
 
 export const SLOT_CONFIG: SlotCategory[] = [
