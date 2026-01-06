@@ -16,8 +16,8 @@ export const UI_TEXT = {
     HINT: "點擊下方按鈕開始！",
     ROLLING: "🎲 命運安排中...",
     GO: "✨ 任務鎖定！出發吧！ ✨",
-    PHOTO_UPLOAD: "📸 點擊上傳任務達成照", // 新增
-    PHOTO_CHANGE: "🔄 點擊更換照片", // 新增：已有照片時的提示
+    PHOTO_UPLOAD: "點擊上傳任務達成照", // 新增
+    PHOTO_CHANGE: "點擊更換照片", // 新增：已有照片時的提示
     PHOTO_DONE: "✨ 任務鎖定！上傳照片證明吧！ ✨", // 新增（可覆蓋原本的 GO）
 };
 

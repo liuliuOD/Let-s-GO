@@ -66,31 +66,37 @@ export default function SlotMachine() {
           ))}
         </div>
 
-        {/* 圖片上傳回報區 */}
+        {/* --- 優化後的圖片區塊 --- */}
         {!isSpinning && (
-          <div
-            onClick={() => fileInputRef.current?.click()}
-            className="group mb-4 w-full h-48 border-4 border-dashed border-slate-100 rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:border-yellow-400 hover:bg-yellow-50 transition-all overflow-hidden relative"
-          >
+          <div className="transition-all duration-500 ease-in-out overflow-hidden">
             {reportImage ? (
-              <>
+              /* 已有照片：顯示照片與更換提示 */
+              <div
+                onClick={() => fileInputRef.current?.click()}
+                className="group mb-4 w-full h-48 border-4 border-yellow-100 rounded-2xl flex items-center justify-center cursor-pointer overflow-hidden relative shadow-inner"
+              >
                 <img src={reportImage} alt="Report" className="w-full h-full object-cover transition-transform group-hover:scale-105" />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white">
-                  <span className="text-3xl mb-1 drop-shadow-lg">🔄</span>
-                  <p className="text-xs font-black drop-shadow-lg">{UI_TEXT.PHOTO_CHANGE}</p>
+                  <span className="text-3xl mb-1">🔄</span>
+                  <p className="text-xs font-black">{UI_TEXT.PHOTO_CHANGE}</p>
                 </div>
-              </>
-            ) : (
-              <div className="text-center flex flex-col items-center group-hover:scale-110 transition-transform">
-                <span className="text-4xl mb-2 animate-bounce">📸</span>
-                <p className="text-xs text-slate-400 font-bold group-hover:text-yellow-600 transition-colors">
-                  {UI_TEXT.PHOTO_UPLOAD}
-                </p>
               </div>
+            ) : (
+              /* 沒有照片：僅在任務鎖定後，顯示一個細小的上傳入口，不佔據大空間 */
+              message === UI_TEXT.PHOTO_DONE && (
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  className="upload-section mb-4 py-3 border-2 border-dashed border-slate-200 rounded-xl flex items-center justify-center gap-2 cursor-pointer hover:bg-slate-50 transition-colors group"
+                >
+                  <span className="text-xl group-hover:animate-bounce">📸</span>
+                  <p className="text-xs text-slate-400 font-bold">{UI_TEXT.PHOTO_UPLOAD}</p>
+                </div>
+              )
             )}
-            <input type="file" ref={fileInputRef} onChange={handleImageUpload} className="hidden" accept="image/*" />
           </div>
         )}
+        {/* 隱藏的 Input */}
+        <input type="file" ref={fileInputRef} onChange={handleImageUpload} className="hidden" accept="image/*" />
 
         {/* 底部訊息 */}
         <div className="text-center p-4 bg-yellow-50 rounded-xl border-2 border-dashed border-yellow-300">
@@ -126,12 +132,27 @@ export default function SlotMachine() {
 
         {/* 保存按鈕 */}
         <button
-          onClick={() => toPng(ticketRef.current!).then(url => {
-            const link = document.createElement('a');
-            link.download = `mission-report.png`;
-            link.href = url;
-            link.click();
-          })}
+          onClick={() => {
+            if (ticketRef.current) {
+              toPng(ticketRef.current, {
+                // ▼ 新增這段 filter 邏輯 ▼
+                filter: (node) => {
+                  // 檢查節點是否為 HTML 元素且包含我們剛剛加的 class
+                  if (node instanceof HTMLElement && node.classList.contains('upload-section')) {
+                    // 如果 "有照片"，回傳 true (保留)
+                    // 如果 "沒照片"，回傳 false (隱藏/忽略)
+                    return !!reportImage;
+                  }
+                  return true; // 其他元素全部保留
+                }
+              }).then(url => {
+                const link = document.createElement('a');
+                link.download = `mission-report.png`;
+                link.href = url;
+                link.click();
+              });
+            }
+          }}
           className="w-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white font-bold py-4 rounded-2xl border-b-4 border-slate-950 active:border-b-0 active:translate-y-[4px] transition-all cursor-pointer flex items-center justify-center gap-2 group"
         >
           <span className="group-hover:scale-110 transition-transform">
